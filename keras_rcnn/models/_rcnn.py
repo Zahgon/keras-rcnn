@@ -10,101 +10,6 @@ import keras_rcnn.models.backbone
 
 
 class RCNN(tensorflow.keras.models.Model):
-    """
-    A Region-based Convolutional Neural Network (RCNN)
-
-    Parameters
-    ----------
-
-    input_shape : A shape tuple (integer) without the batch dimension.
-
-        For example:
-
-            `input_shape=(224, 224, 3)`
-
-        specifies that the input are batches of $224 × 224$ RGB images.
-
-        Likewise:
-
-            `input_shape=(224, 224)`
-
-        specifies that the input are batches of $224 × 224$ grayscale
-        images.
-
-    categories : An array-like with shape:
-
-            $$(categories,)$$.
-
-        For example:
-
-            `categories=["circle", "square", "triangle"]`
-
-        specifies that the detected objects belong to either the
-        “circle,” “square,” or “triangle” category.
-
-    anchor_aspect_ratios : An array-like with shape:
-
-            $$(aspect_ratios,)$$
-
-        used to generate anchors.
-
-        For example:
-
-            `aspect_ratios=[0.5, 1., 2.]`
-
-        corresponds to 1:2, 1:1, and 2:1 respectively.
-
-    anchor_base_size : Integer that specifies an anchor’s base area:
-
-            $$base_area = base_size^{2}$$.
-
-    anchor_scales : An array-like with shape:
-
-            $$(scales,)$$
-
-        used to generate anchors. A scale corresponds to:
-
-            $$area_{scale}=\sqrt{\frac{area_{anchor}}{area_{base}}}$$.
-
-    anchor_stride : A positive integer
-
-    backbone :
-
-    dense_units : A positive integer that specifies the dimensionality of
-        the fully-connected layers.
-
-        The fully-connected layers are the layers that precede the
-        fully-connected layers for the classification, regression and
-        segmentation target functions.
-
-        Increasing the number of dense units will increase the
-        expressiveness of the network and consequently the ability to
-        correctly learn the target functions, but it’ll substantially
-        increase the number of learnable parameters and memory needed by
-        the model.
-
-    mask_shape : A shape tuple (integer).
-
-    maximum_proposals : A positive integer that specifies the maximum
-        number of object proposals returned from the model.
-
-        The model always return an array-like with shape:
-
-            $$(maximum_proposals, 4)$$
-
-        regardless of the number of object proposals returned after
-        non-maximum suppression is performed. If the number of object
-        proposals returned from non-maximum suppression is less than the
-        number of objects specified by the `maximum_proposals` parameter,
-        the model will return bounding boxes with the value:
-
-            `[0., 0., 0., 0.]`
-
-        and scores with the value `[0.]`.
-
-    minimum_size : A positive integer that specifies the maximum width
-        or height for each object proposal.
-    """
 
     def __init__(
         self,
@@ -342,17 +247,7 @@ class RCNN(tensorflow.keras.models.Model):
         super(RCNN, self).__init__(inputs, outputs)
 
     def compile(self, optimizer, **kwargs):
-        super(RCNN, self).compile(optimizer, None)
+        pass
 
     def predict(self, x, batch_size=None, verbose=0, steps=None, **kwargs):
-        target_bounding_boxes = numpy.zeros((x.shape[0], 1, 4))
-
-        target_categories = numpy.zeros((x.shape[0], 1, self.n_categories))
-
-        target_mask = numpy.zeros((1, 1, *self.mask_shape))
-
-        target_metadata = numpy.array([[x.shape[1], x.shape[2], 1.0]])
-
-        x = [target_bounding_boxes, target_categories, x, target_mask, target_metadata]
-
-        return super(RCNN, self).predict(x, batch_size, verbose, steps)
+        pass

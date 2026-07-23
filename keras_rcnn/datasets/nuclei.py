@@ -12,4 +12,4 @@ The cells were stained with Hoechst 33342 to highlight their DNA.
 
 
 def load_data():
-    return keras_rcnn.datasets.load_data("nuclei")
+    pass

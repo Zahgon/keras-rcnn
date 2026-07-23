@@ -9,13 +9,7 @@ import skimage.io
 
 
 def md5sum(pathname, blocksize=65536):
-    checksum = hashlib.md5()
-
-    with open(pathname, "rb") as stream:
-        for block in iter(lambda: stream.read(blocksize), b""):
-            checksum.update(block)
-
-    return checksum.hexdigest()
+    pass
 
 
 def __main__():
